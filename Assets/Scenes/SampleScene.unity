@@ -850,9 +850,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mRenderer: {fileID: 1111956955}
+  initialPressure: 0.5
+  pressure: 0
   slowDownRate: 0.025
-  pressureIncrease: 0.5
-  fillDuration: 5
 --- !u!212 &1111956955
 SpriteRenderer:
   m_ObjectHideFlags: 0
