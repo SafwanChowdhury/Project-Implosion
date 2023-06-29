@@ -21,40 +21,37 @@ public class MeterScript : MonoBehaviour
         pressure = initialPressure;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IncreasePressure()
     {
-        if (Input.GetKey(KeyCode.D) == true)
+        if (transform.localScale.y < 4)
         {
-            if (transform.localScale.y < 4)
-            {
-                transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y + pressure * Time.deltaTime, transform.localScale.z);
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y + pressure * Time.deltaTime, transform.localScale.z);
 
-                endY = mRenderer.bounds.min.y;
-                transform.position = new Vector3(transform.position.x, transform.position.y + (startY - endY), transform.position.z);
+            endY = mRenderer.bounds.min.y;
+            transform.position = new Vector3(transform.position.x, transform.position.y + (startY - endY), transform.position.z);
 
-                if (pressure > 0.01)
-                {
-                    pressure -= slowDownRate * Time.deltaTime;
-                }
-            }
-        }
-        else
-        {
-            if (transform.localScale.y > 0)
+            if (pressure > 0.01)
             {
-                tempY = mRenderer.bounds.max.y;
-                transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y - pressure * Time.deltaTime, transform.localScale.z);
-
-                endY = mRenderer.bounds.max.y;
-                transform.position = new Vector3(transform.position.x, transform.position.y - (tempY - endY), transform.position.z);
-                pressure += slowDownRate * Time.deltaTime;
-            }
-            if (transform.localScale.y < 0)
-            {
-                transform.localScale = new Vector3(transform.localScale.x, 0, transform.localScale.z);
-                pressure = initialPressure;
+                pressure -= slowDownRate * Time.deltaTime;
             }
         }
     }
+
+    public void DecreasePressure()
+    {
+        if (transform.localScale.y > 0)
+        {
+            tempY = mRenderer.bounds.max.y;
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y - pressure * Time.deltaTime, transform.localScale.z);
+
+            endY = mRenderer.bounds.max.y;
+            transform.position = new Vector3(transform.position.x, transform.position.y - (tempY - endY), transform.position.z);
+            pressure += slowDownRate * Time.deltaTime;
+        }
+        if (transform.localScale.y < 0)
+        {
+            transform.localScale = new Vector3(transform.localScale.x, 0, transform.localScale.z);
+            pressure = initialPressure;
+        }
+    }   
 }

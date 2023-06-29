@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{C869A923-498E-20FB-1A23-61A10D37606E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -61,6 +62,7 @@
     <Compile Include="Assets\GreenZoneScript.cs" />
     <Compile Include="Assets\MeterScript.cs" />
     <Compile Include="Assets\MarkerScript.cs" />
+    <Compile Include="Assets\TriggerScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
