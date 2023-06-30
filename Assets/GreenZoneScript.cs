@@ -8,6 +8,7 @@ public class GreenZoneScript : MonoBehaviour
     public float speed = 2f;
     public float maxHeight;
     public float minHeight;
+    public float scaleSize = 0.7f;
 
     private bool movingUp = true;
 
@@ -37,4 +38,10 @@ public class GreenZoneScript : MonoBehaviour
             movingUp = true;
         }
     }
+
+    private void scaleZone()
+    {
+        transform.localScale = new Vector3(transform.localScale.x, scaleSize, transform.localScale.z);
+    }
+
 }

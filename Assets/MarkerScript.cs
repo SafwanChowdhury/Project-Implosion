@@ -20,5 +20,14 @@ public class MarkerScript : MonoBehaviour
         {
             marker.velocity = Vector2.up * moveSpeed;
         }
+
+        if (transform.position.y < -2)
+        {
+            transform.position = new Vector3(transform.position.x, -2f, transform.position.z);
+        }
+        else if(transform.position.y > 2.55)
+        {
+            transform.position = new Vector3(transform.position.x, 2.54f, transform.position.z);
+        }
     }
 }
