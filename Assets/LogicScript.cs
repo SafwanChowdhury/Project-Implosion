@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class LogicScript : MonoBehaviour
 {
     public GreenZoneScript greenZone;
     public Text scoreText;
     public float depth;
-    private bool units = true;
-    private float interval = 0;
-    float roundInterval = Random.Range(50, 101);
-    float timePassed = 0f;
-    bool settingsChanged = false;
+    public float lvlChange = 0;
+    public int increment = 33;
 
     // Start is called before the first frame update
     void Start()
@@ -26,13 +23,20 @@ public class LogicScript : MonoBehaviour
     void Update()
     {
         depthCalculator();
-        levelSelector();
-
+        if (depth < 10000)
+        {
+            levelSelector();
+        }
+        else
+        {
+            lvlChange += increment * Time.deltaTime;
+            endlessMode();
+        }
     }
 
     void depthCalculator()
     {
-        depth += 33 * Time.deltaTime;
+        depth += increment * Time.deltaTime;
         scoreText.text = ((int)depth).ToString();
     }
 
@@ -50,51 +54,25 @@ public class LogicScript : MonoBehaviour
         {
             greenZone.speed = 0;
             greenZone.scaleSize = 0.4f;
+            greenZone.scaleZone();
         }
         else if (depth > 4000 && depth < 9999)
         {
             greenZone.scaleSize = 0.7f;
             greenZone.speed = 2;
-        }
-        else if(depth > 10000)
-        {
-            endlessMode();
+            greenZone.scaleZone();
         }
     }
 
-    
     void endlessMode()
     {
-        timePassed += Time.deltaTime;
-
-        if (!settingsChanged && timePassed >= roundInterval)
+        if (lvlChange > 1000)
         {
-            ChangeGameSettings();
-            settingsChanged = true;
+            lvlChange = 0;
+            greenZone.speed = Random.Range(0, 3); // Moved Random.Range here
+            float size = Random.Range(3, 10) / 10f; // Use float division for more precise results
+            greenZone.scaleSize = size;
+            greenZone.scaleZone();
         }
-
-        if (settingsChanged && timePassed >= roundInterval + 5f) // 5 seconds delay before changing settings again
-        {
-            ResetGameSettings();
-            roundInterval = Random.Range(50, 101);
-            timePassed = 0f;
-            settingsChanged = false;
-        }
-    }
-
-    void ChangeGameSettings()
-    {
-        greenZone.speed = Random.Range(0, 5);
-        int val = Random.Range(1, 30);
-        greenZone.scaleSize = val / 10;
-        // Modify other game settings as needed
-    }
-
-    void ResetGameSettings()
-    {
-        // Reset game settings to default values
-        greenZone.speed = 0;
-        greenZone.scaleSize = 0;
-        // Reset other game settings as needed
     }
 }

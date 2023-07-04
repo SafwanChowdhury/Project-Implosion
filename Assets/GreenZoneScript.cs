@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class GreenZoneScript : MonoBehaviour
@@ -9,6 +11,7 @@ public class GreenZoneScript : MonoBehaviour
     public float maxHeight;
     public float minHeight;
     public float scaleSize = 0.7f;
+    public SpriteRenderer gRenderer;
 
     private bool movingUp = true;
 
@@ -39,9 +42,15 @@ public class GreenZoneScript : MonoBehaviour
         }
     }
 
-    private void scaleZone()
+    public void scaleZone()
     {
+        float startY = gRenderer.bounds.min.y;
         transform.localScale = new Vector3(transform.localScale.x, scaleSize, transform.localScale.z);
+        float endY = gRenderer.bounds.min.y;
+        float diff = endY - startY;
+        minHeight -= diff;
+        maxHeight += diff;
+
     }
 
 }

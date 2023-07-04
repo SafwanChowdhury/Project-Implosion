@@ -223,8 +223,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   maxHeight: 1.7
-  minHeight: -1.7
+  minHeight: -1.6
   scaleSize: 0.7
+  gRenderer: {fileID: 74379413}
 --- !u!1 &388661355
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,9 +945,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mRenderer: {fileID: 1111956955}
-  initialPressure: 0.5
+  initialPressure: 1
   pressure: 0
-  slowDownRate: 0.025
+  slowDownRate: 0.05
 --- !u!212 &1111956955
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1115,6 +1116,8 @@ MonoBehaviour:
   greenZone: {fileID: 0}
   scoreText: {fileID: 1994570557}
   depth: 0
+  lvlChange: 0
+  increment: 100
 --- !u!4 &1403899457
 Transform:
   m_ObjectHideFlags: 0
@@ -1421,7 +1424,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.85600007}
   m_AnchorMax: {x: 0.5, y: 0.9620001}
-  m_AnchoredPosition: {x: -0.0000076293945, y: -22.783}
+  m_AnchoredPosition: {x: -0.0000076293945, y: 0}
   m_SizeDelta: {x: 800, y: 45.5663}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1994570557
