@@ -26,58 +26,39 @@ public class LogicScript : MonoBehaviour
     void Update()
     {
         depthCalculator();
-        if (depth > 200 && !units)
-        {
-            endlessMode();
-        }
-        else
-        {
-            levelSelector();
-        }
+        levelSelector();
 
     }
 
     void depthCalculator()
     {
-        if (depth < 500 && units)
-        {
-            depth += 33 * Time.deltaTime;
-        }
-        else
-        {
-            if (units)
-            {
-                depth = depth / 33 * 1.082677f;
-                units = false;
-            }
-            depth += 1.082677f * Time.deltaTime;
-
-        }
+        depth += 33 * Time.deltaTime;
         scoreText.text = ((int)depth).ToString();
     }
 
     void levelSelector()
     {
-        if (!units)
+        if (depth > 500 && depth < 999)
         {
-            if (depth > 20)
-            {
-                greenZone.speed = 0.5f;
-            }
-            else if (depth > 30)
-            {
-                greenZone.speed = 1;
-            }
-            else if (depth > 60)
-            {
-                greenZone.speed = 0;
-                greenZone.scaleSize = 0.4f;
-            }
-            else if (depth > 100)
-            {
-                greenZone.scaleSize = 0.7f;
-                greenZone.speed = 2;
-            }
+            greenZone.speed = 0.5f;
+        }
+        else if (depth > 1000 && depth < 1999)
+        {
+            greenZone.speed = 1;
+        }
+        else if (depth > 2000 && depth < 3999)
+        {
+            greenZone.speed = 0;
+            greenZone.scaleSize = 0.4f;
+        }
+        else if (depth > 4000 && depth < 9999)
+        {
+            greenZone.scaleSize = 0.7f;
+            greenZone.speed = 2;
+        }
+        else if(depth > 10000)
+        {
+            endlessMode();
         }
     }
 

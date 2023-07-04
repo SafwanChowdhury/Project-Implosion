@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 /Library
 /Temp
+/Assets/TextMesh Pro
+/UserSettings/Layouts/default-2022.dwlt
